@@ -12,4 +12,5 @@ public class ApparelPage extends Utility {
         return getTextFromElement(apparelTab);
     }
 
+
 }

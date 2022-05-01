@@ -8,6 +8,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.support.ui.*;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.List;
@@ -17,8 +18,7 @@ public class Utility extends ManageDriver {
     /**
      * This method will click on the elment
      */
-    public static void clickOnElement(By by)
-    {
+    public static void clickOnElement(By by) {
         WebElement element = driver.findElement(by);
         element.click();
     }
@@ -26,16 +26,14 @@ public class Utility extends ManageDriver {
     /**
      * This method will get text from element
      */
-    public String getTextFromElement(By by)
-    {
+    public String getTextFromElement(By by) {
         return driver.findElement(by).getText();
     }
 
     /**
      * This method will send text element
      */
-    public void sendTextToElement(By by, String text)
-    {
+    public void sendTextToElement(By by, String text) {
         driver.findElement(by).sendKeys(text);
     }
 
@@ -46,7 +44,7 @@ public class Utility extends ManageDriver {
      * This method will switch to alert
      */
 
-    public void switchToAlert(){
+    public void switchToAlert() {
         driver.switchTo().alert();
 
     }
@@ -54,7 +52,7 @@ public class Utility extends ManageDriver {
     /**
      * This method will accept to alert
      */
-    public void acceptAlert(){
+    public void acceptAlert() {
         driver.switchTo().alert();
 
     }
@@ -79,7 +77,7 @@ public class Utility extends ManageDriver {
     /**
      * This method will select the option visible text
      */
-    public void selectByVisibleTextFromDropDown(By by, String text){
+    public void selectByVisibleTextFromDropDown(By by, String text) {
         WebElement dropDown = driver.findElement(by);
         Select select = new Select(dropDown);
         select.selectByVisibleText(text);
@@ -187,5 +185,16 @@ public class Utility extends ManageDriver {
         return element;
     }
 
-}
 
+
+
+    //******************************* Assert verify Methods *************************************************//
+
+    // This method will verify text displayed on web page
+    public void verifyElements(String displayMessage, String expectedMessage, By by) {
+        String actualMessage = getTextFromElement(by);
+        Assert.assertEquals(displayMessage, expectedMessage, actualMessage);
+
+    }
+
+}
